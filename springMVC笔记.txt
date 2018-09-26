@@ -1,0 +1,22 @@
+SpringMVC 默认的配置文件位置是<servlet-name>XXX</servlet-name> /WEB-INF/XXX-servlet.xml
+
+配置自定义拦截器的时候postHandle和afterCompletion方法的执行顺序和配置的顺序相反；preHandle方法的执行顺序和配置的顺序相同；若先配置的拦截器preHandle方法返回值为false，则后续的方法都不会执行；若后配置的拦截器preHandle方法返回值为false，则后续的方法都不会执行，但会执行先配置的afterCompletion方法；
+
+SpringMVC 若要访问静态资源则需要加入<mvc:default-servlet-handler/>，否则是无法访问的
+
+SpingMVC IOC 容器中的bean可以引用Spring IOC 容器中的bean，反之则会出现异常；
+
+<context:component-scan base-package="com.mxw" use-default-filters="false" >
+	<context:include-filter type="annotation" 
+	expression="org.springframework.stereotype.Controller"/> 
+</context:component-scan>(只扫描@Controller标签)
+
+
+org.springframework.web.filter.HiddenHttpMethodFilter
+html中form表单只支持GET与POST请求，而DELETE、PUT等method并不支持，spring3添加了一个过滤器，可以将这些请求转换为标准的http方法，使得支持GET、POST、PUT与DELETE请求。
+
+org.springframework.web.context.ContextLoaderListener
+ContextLoaderListener的作用就是启动Web容器时，自动装配ApplicationContext的配置信息。因为它实现了ServletContextListener这个接口，在web.xml配置这个监听器，启动容器时，就会默认执行它实现的方法。至于ApplicationContext.xml这个配置文件部署在哪，如何配置多个xml文件，书上都没怎么详细说明。现在的方法就是查看它的API文档。在ContextLoaderListener中关联了ContextLoader这个类，所以整个加载配置过程由ContextLoader来完成。
+
+
+

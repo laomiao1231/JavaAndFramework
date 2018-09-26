@@ -1,0 +1,40 @@
+
+Propagation （事务的传播属性）
+
+Propagation ：　　key属性确定代理应该给哪个方法增加事务行为。这样的属性最重要的部份是传播行为。有以下选项可供使用：PROPAGATION_REQUIRED--支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。
+
+PROPAGATION_SUPPORTS--支持当前事务，如果当前没有事务，就以非事务方式执行。
+
+PROPAGATION_MANDATORY--支持当前事务，如果当前没有事务，就抛出异常。
+
+PROPAGATION_REQUIRES_NEW--新建事务，如果当前存在事务，把当前事务挂起。
+
+PROPAGATION_NOT_SUPPORTED--以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。
+
+PROPAGATION_NEVER--以非事务方式执行，如果当前存在事务，则抛出异常。
+
+
+<bean id="pre" scope=""
+（prototype 延时加载不使用时不会创建对象实例(每次使用时都会创建一次)
+singleton默认值只要在上下文中加载配置文件就会创建对象实例(使用时只会创建一次)） factory-method=""(调用自己设置的带参数的构造方法)class="com.miao.beanlife.Preson" />
+/****************aop*****************************/
+MethodBeforeAdvice接口 三个参数的含义 ：
+    method - 被调用的方法
+    args - 给方法传递的参数
+    target - 调用的目标目标。可能是空的。
+
+<property name="hibernateProperties">
+<props>
+<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
+</props>
+</property>在applicationContext.xml中配置以上内容可避免下面的反射错误
+INFO: HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+
+<context:component-scan base-package="com.miao" >
+   <context:exclude-filter type="annotation" 
+   expression="org.springframework.stereotype.Controller"/> 
+</context:component-scan>（扫描@Controller以外的标签）
+
+
+
+struts2托管给spring的action不仅要在spring的配置中配置而且scope="prototype"。另外在struts.xml中的配置也不可节省

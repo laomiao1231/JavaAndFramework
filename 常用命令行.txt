@@ -1,0 +1,21 @@
+
+java -version 查看JDK安装是否成功；
+
+netstat -ano 查看端口占用情况；
+
+查看指定端口的占用情况  netstat -aon|findstr "10010"
+
+MAVEN :
+
+创建简单的maven 的web项目
+    mvn archetype:create 
+    举例：mvn archetype:create  -DgroupId=com.demo.app -DartifactId=demo-app  -DarchetypeArtifactId=maven-archetype-webapp
+
+生成和清除Eclipse项目结构：
+   mvn eclipse:eclipse 将maven项目变成eclipse,其实是在项目中生成 .project 和 .classpath 两个文件
+   mvn eclipse:clean 清理（删除target目录下编译内容）
+   mvn clean 打包发布
+
+
+先把待引入的jar包放在一个目录下，需要改一下包名，如fbcds.jar修改成fbcds-1.0.jar，如F:\lib目录，在命令行CD到lib目录，执行以下命令:
+mvn install:install-file -Dfile=IKAnalyzer-1.0.jar -DgroupId=miao -DartifactId=IKAnalyzer -Dversion=1.0 -Dpackaging=jar

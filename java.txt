@@ -1,0 +1,160 @@
+JDK和JRE区别：
+	JRE： Java Runtime Environment
+	JDK：Java Development Kit
+	JRE是Java运行时环境，包含了Java虚拟机，Java基础类库；是使用Java编写的程序运行所需的环境
+	JDK是Java开发工具包，JDK包含了JRE，同时还包含了Java的编译器javac
+
+Java基础数据类型和字节大小
+	int     	32bit
+	short   	16bit
+	long     	64bit
+	byte     	8bit
+	char     	16bit
+	float   	32bit
+	double   	64bit
+	boolean 	1bit
+JSP隐含对象也叫做预定义变量
+	application、page、request、response、session、exception、out、config、pageContext
+
+值传递和引用传递：
+	对象被值传递，意味着传递了对象的一个副本。因此，就算是改变了对象副本，也不会影响源对象的值
+	对象被引用传递，意味着传递的并不是实际的对象，而是对象的引用。因此，外部对引用对象所做的改变会反映到所有的对象上
+
+进程和线程的区别：
+	进程是执行着的应用程序，而线程是进程内部的一个执行序列。一个进程可以有多个线程。线程又叫做轻量级进程
+
+迭代器(Iterator)：
+	Iterator接口提供了很多对集合元素进行迭代的方法。每一个集合类都包含了可以返回迭代器实例的迭代方法。迭代器可以在迭代的过程中删除底层集合的元素
+
+Iterator和ListIterator的区别：
+    Iterator可用来遍历Set和List集合，但是ListIterator只能用来遍历List。
+    Iterator对集合只能是前向遍历，ListIterator既可以前向也可以后向。
+    ListIterator实现了Iterator接口，并包含其他的功能，比如：增加元素，替换元素，获取前一个和后一个元素的索引
+
+Java中Exception和Error的区别：
+	Exception和Error都是Throwable的子类。Exception用于用户程序可以捕获的异常情况。Error定义了不期望被用户程序捕获的异常
+
+throw和throws的区别：
+	throw关键字用来在程序中明确的抛出异常，相反，throws语句用来表明方法不能处理的异常。每一个方法都必须要指定哪些异常不能处理，所以方法的调用者才能够确保处理可能发生的异常，多个异常是用逗号分隔的
+
+异常处理的时候，finally代码块的重要性：
+	无论是否抛出异常，finally代码块总是会被执行。就算是没有catch语句同时又抛出异常的情况下，finally代码块仍然会被执行。最后要说的是，finally代码块主要用来释放资源，比如：I/O缓冲区，数据库连接
+
+finally代码块和finalize()方法的区别：
+	无论是否抛出异常，finally代码块都会执行，它主要是用来释放应用占用的资源。finalize()方法是Object类的一个protected方法，它是在对象被垃圾回收之前由Java虚拟机来调用的
+
+
+list、set、map区别：
+	list、set都继承自Collection接口，map不是
+
+	map适合存储键值类型的数据；list元素是有序的，可以重复；set元素是无序的，重复值会覆盖（虽是无序但元素的位置有其hashCode值决定）
+	hashmap基于哈希表实现，适用于元素的插入，定位，删除；允许空键值
+	hashtable是线程同步的，不允许有空键值
+	treemap是基于二叉树（红黑树的数据结构）实现的，适用于按自然顺序或自定义顺序遍历键值
+
+	set检索效率低下，插入和删除效率高，不会引起元素位置变化
+	treeset是基于二叉树（红黑树的数据结构）实现的，treeset的值是排序好的，不允许放空值， 适合用作数据的排序
+	hashset是哈希表实现的，元素无序，能且只能放一个null 适合数据的查询；性能优于treeset
+
+	list和数组类似，可以动态增长，检索效率较高，插入和删除效率较低，会引起元素位置变化
+	arraylist是实现基于动态数组的数据结构，地址连续（在内存中数据连着放），查询效率高， 插入和删除效率较低
+	linkedlist是基于链表的数据结构，地址是任意的；因为要移动指针，故查询效率低， 插入和删除效率高
+
+string、stringbuilder、stringbuffer区别：
+	string字符串常量
+	stringbuilder字符串变量（非线程安全）
+	stringbuffer字符串变量（线程安全）
+
+何时使用字符流，何时使用字节流？依据是什么？
+	使用字符流的应用场景： 如果是读写字符数据的时候则使用字符流。
+	使用字节流的应用场景： 如果读写的数据都不需要转换成字符的时候，则使用字节流。 
+
+
+什么是JDBC
+	JDBC是允许用户在不同数据库之间做选择的一个抽象层。JDBC允许开发者用JAVA写数据库应用程序，而不需要关心底层特定数据库的细节
+
+驱动(Driver)在JDBC中的角色：
+	JDBC驱动提供了特定厂商对JDBC API接口类的实现，驱动必须要提供java.sql包下面这些类的实现：Connection, Statement, PreparedStatement,CallableStatement, ResultSet和Driver
+
+PreparedStatement比Statement有什么优势？
+	PreparedStatements是预编译的，因此，性能会更好。同时，不同的查询参数值，PreparedStatement可以重用
+
+
+hibernate（标准化的ORM框架）和mybatis（标准化的ORM框架）比较：
+	mybatis　优点：不完全的ORM框架
+		基于原生jdbc，操作效率高
+		小巧且简单易学
+		灵活，不会对应用程序或数据库现有设计强加影响；sql写在xml里，降低耦合度，便于统一管理和优化，并可重用
+		提供xml标签，支持动态sql编写
+		提供映射标签，支持对象与数据库orm字段关系映射
+	缺点：
+		sql编写量大，要求开发人员对sql语句编写有一定工地
+		sql语句依赖数据库，导致数据库移植性差
+		日志除了基本记录功能，其他功能较弱
+	hibernate  优点：
+		对jdbc进行封装，减少数据库操作的代码
+		全自动，可以根据JavaBean对象和数据库的映射结构来自动生成sql，开发者无需关心sql的生成与结果映射，可以更专注于业务流程；
+		数据库无关性较好
+		拥有健全的日志系统，涉及广泛；包含sql记录，关系异常，缓存提示，脏数据警告等
+	缺点： 
+		封装的功能和特性比较多，不易掌握，对开发人员要求较高
+		sql自动生成，无法进行维护
+	对比：
+		Hibernate属于全自动ORM映射工具，使用Hibernate查询关联对象或者关联集合对象时，可以根据对象关系模型直接获取。而Mybatis在查询关联对象或关联集合对象时，需要手动编写sql来完成
+		hibernate适合业务变化比较小的项目
+		mybatis适合需求多变的项目
+
+mybatis中#{}和${}的区别：
+	#{}是预编译处理，${}是字符串替换
+	Mybatis在处理#{}时，会将sql中的#{}替换为?号，调用PreparedStatement的set方法来赋值
+	Mybatis在处理${}时，就是把${}替换成变量的值
+	使用#{}可以有效的防止SQL注入，提高系统安全性
+
+mybatis接口绑定有几种实现方式,分别是怎么实现的?
+	接口绑定有两种实现方式：
+		通过注解绑定,就是在接口的方法上面加上@Select@Update等注解里面包含Sql语句来绑定,
+		通过xml里面写SQL来绑定,在这种情况下,要指定xml映射文件里面的namespace必须为接口的全路径名
+
+spring mvc:
+	springmvc的入口是一个servlet即前端控制器
+	springmvc是基于方法开发，传递参数是通过方法形参，可以设计为单例或多例(建议单例)
+	springmvc通过参数解析器是将request对象内容进行解析成方法形参，将响应数据和页面封装成ModelAndView对象，最后又将模型数据通过request对象传输到页面。 Jsp视图解析器默认使用jstl。
+
+	前端控制器（DispatcherServlet）：接收请求，响应结果，相当于电脑的CPU。
+	处理器映射器（HandlerMapping）：根据URL去查找处理器
+	处理器（Handler）：（需要程序员去写代码处理逻辑的）
+	处理器适配器（HandlerAdapter）：会把处理器包装成适配器，这样就可以支持多种类型的处理器，类比笔记本的适配器（适配器模式的应用）
+	视图解析器（ViewResovler）：进行视图解析，多返回的字符串，进行处理，可以解析成对应的页面
+
+spring mvc 运行流程：
+	1、用户发请求到前端控制器DispatcherServlet
+	2、DispatcherServlet收到请求调用HandlerMapping处理器映射器
+	3、处理器映射器找到具体处理器（可以根据xml配置、注解进行查找）生成处理器对象和处理器拦截器（如果有就生成）一并返回给DispatcherServlet
+	4、DispatcherServlet调用HandlerAdapter处理器适配器
+	5、HandlerAdapter通过适配器调用具体的处理器（Controller，后端控制器）
+	6、Controller执行完返回ModelAndView
+	7、HandlerAdapter将ModelAndView返回给DispatcherServlet
+	8、DispatcherServlet将ModelAndView传给ViewReslover视图解析器
+	9、ViewReslover解析后返回具体的View
+	10、DispatcherServlet根据View进行视图渲染（将模型数据填充到视图）
+	11、DispatcherServlet响应用户操作
+
+核心架构的具体流程步骤如下：
+	1、首先用户发送请求——>DispatcherServlet，前端控制器收到请求后自己不进行处理，而是委托给其他的解析器进行处理，作为统一访问点，进行全局的流程控制；
+	2、DispatcherServlet——>HandlerMapping， HandlerMapping 将会把请求映射为HandlerExecutionChain 对象（包含一个Handler 处理器（页面控制器）对象、多个HandlerInterceptor 拦截器）对象，通过这种策略模式，很容易添加新的映射策略；
+	3、DispatcherServlet——>HandlerAdapter，HandlerAdapter 将会把处理器包装为适配器，从而支持多种类型的处理器，即适配器设计模式的应用，从而很容易支持很多类型的处理器；
+	4、HandlerAdapter——>处理器功能处理方法的调用，HandlerAdapter 将会根据适配的结果调用真正的处理器的功能处理方法，完成功能处理；并返回一个ModelAndView 对象（包含模型数据、逻辑视图名）；
+	5、ModelAndView的逻辑视图名——> ViewResolver， ViewResolver 将把逻辑视图名解析为具体的View，通过这种策略模式，很容易更换其他视图技术；
+	6、View——>渲染，View会根据传进来的Model模型数据进行渲染，此处的Model实际是一个Map数据结构，因此很容易支持其他视图技术；
+	7、返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束。
+
+下边两个组件通常情况下需要开发：
+	Handler：处理器，即后端控制器用controller表示。
+	View：视图，即展示给用户的界面，视图中通常需要标签语言展示模型数据。
+
+mysql数据库：
+事务的四个特性：
+原子性（atomicity）：原子性是指事务是一个不可再分割的工作单位，事务中的操作要么都发生，要么都不发生
+一致性（consistency）：数据库总数从一个一致性的状态转换到另一个一致性的状态
+隔离性（isolation）：隔离性是指并发的事务是相互隔离的。即一个事务内部的操作及正在操作的数据必须封锁起来，不被企图进行修改的事务看到
+持久性（durability）：一旦事务提交，则其所做的修改就会永久保存到数据库中。此时即使系统崩溃，修改的数据也不会丢失

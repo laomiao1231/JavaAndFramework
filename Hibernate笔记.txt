@@ -1,0 +1,23 @@
+hibernate是对jdbc进行轻量化封装的orm（对象关系映射）框架，充当项目持久层
+
+hibernate是以java反射机制为基础
+
+对象关系映射文件　：文件会说明表与对象的关系以及对象的属性和表的字段的对应关系，放在domain包
+之下
+
+ Hibernate支持自动建表，在开发阶段很方便，可以保证hbm与数据库表结构的自动同步。
+Xml代码<property name="hbm2ddl.auto">update</property>  
+update：表示自动根据model对象来更新表结构，启动hibernate时会自动检查数据库，如果缺少表，则自动建表；如果表里缺少列，则自动添加列。
+还有其他的参数： 
+create：启动hibernate时，自动删除原来的表，新建所有的表，所以每次启动后的以前数据都会丢失。
+create-drop：启动hibernate时，自动创建表，程序关闭时，自动把相应的表都删除。所以程序结束时，表和数据也不会再存在。
+PS：数据库要预先建立好，因为hibernate只会建表，不会建库
+
+使用Query接口where后可以是类的属性名，也可以是表中的字段，但是from后只能是类名。
+
+
+ <class name="org.mm.domain.Student" lazy="false" table="stus">懒加载设置
+
+
+ <set name="stuscourses" inverse="true" cascade="all">****</set> 级联设置，一般设置在one这一端
+

@@ -1,0 +1,23 @@
+﻿spring-boot学习网址： http://tengj.top/tags/Spring-Boot/
+spring-cloud学习网址： http://blog.csdn.net/forezp/article/details/70148833
+java学习地址： http://txw1958.cnblogs.com/
+
+@RestController注解等价于@Controller+@ResponseBody的结合
+
+@SpringBootApplication||@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})可以去除以下错误：
+	Cannot determine embedded database driver class for database type NONE
+	
+@SpringBootApplication||@EnableAutoConfiguration(exclude={JpaRepositoriesAutoConfiguration.class})可以去除以下错误:
+	java.lang.IllegalArgumentException: At least one JPA metamodel must be present! //禁止springboot自动加载持久化bean  
+	
+在application.properties 添加以下内容
+# default-store in spring session. it will be set in redis only outside.
+spring.session.store-type=none  可以去除以下错误：
+	No Spring Session store is configured: set the 'spring.session.store-type' property
+
+以下两种启动方式对等：
+    @Configuration（@SpringBootConfiguration点开查看发现里面还是应用了@Configuration）
+    @EnableAutoConfiguration
+    @ComponentScan
+ 或 
+    @SpringBootApplication

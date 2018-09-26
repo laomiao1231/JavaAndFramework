@@ -1,0 +1,1 @@
+@EnableWebSecurity加@Configuration 注解, 注解 WebSecurityConfigurer 类型的类，或者利用@EnableWebSecurity 注解继承 WebSecurityConfigurerAdapter的类，构成 Spring Security 的配置

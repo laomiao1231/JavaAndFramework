@@ -1,0 +1,21 @@
+
+@Component等同于xml中的<bean id=" " class=" " />
+使用时需要在xml中配置<context:component-scan base-package="com.miao" 指定扫描的包/>
+@Component("empservice")和@Component(value="empservice")效果一样都是为组件命名
+@Component()默认值，是类名首字母小写。
+
+@Resource(name="sessionFactory")注入（setter）属性值，若不指定name=“”则默认值是set的属性名
+
+@Autowired 默认是按byType自动注入；@Resource默认按 byName自动注入
+/***************
+@Autowired
+private FactoryServiceImpl factoryService;
+
+@Autowired
+private FactoryService factoryService;
+	
+@Resource
+public void setFactoryService(FactoryServiceImpl factoryService) {
+	this.factoryService = factoryService;
+}
+**************/三者效果一样

@@ -1,0 +1,37 @@
+#authc.loginUrl=/Login 必须要在[urls]中配置/Login=anon
+
+ anon表示匿名访问，即不需要登录就可以访问，例如/login这个路径可以匿名访问
+ authe表示需要登录才能访问
+ roles[admin]表示有admin这个角色的用户才能访问
+ perms[“user:create”]表示有这个权限的才能访问
+
+#authcStrategy = org.apache.shiro.authc.pam.FirstSuccessfulStrategy
+securityManager.authenticator.authenticationStrategy = $authcStrategy
+只要有一个验证通过结束验证#
+
+#jdbcRealm=org.apache.shiro.realm.jdbc.JdbcRealm  
+#dataSource=com.alibaba.druid.pool.DruidDataSource  
+#dataSource.driverClassName=com.mysql.jdbc.Driver  
+#dataSource.url=jdbc:mysql://127.0.0.1:3306/shiro  
+#dataSource.username=root  
+#dataSource.password=root 
+#jdbcRealm.dataSource=$dataSource  
+#securityManager.realms=$jdbcRealm
+#连接数据库的ini配置
+
+passwordMatcher=org.apache.shiro.authc.credential.PasswordMatcher 
+passwdTestRealm=org.miao.realm.PasswdTestRealm
+passwdTestRealm.credentialsMatcher=$passwordMatcher
+securityManager.realms=$passwdTestRealm
+DefaultPasswordService service = new DefaultPasswordService();
+String passwd = service.encryptPassword("123");
+#加密登录测试(DefaultPasswordService()方法)
+
+hashMatcher=org.apache.shiro.authc.credential.HashedCredentialsMatcher 
+hashMatcher.hashAlgorithmName=md5 
+SimpleAuthenticationInfo info = new SimpleAuthenticationInfo("dd", passwd, getName());
+info.setCredentialsSalt(ByteSource.Util.bytes(name));
+return info;
+#加密登录测试(加盐测试方法)
+
+
